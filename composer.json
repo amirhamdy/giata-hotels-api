@@ -9,6 +9,9 @@
     ],
     "version": "1.0.0",
     "minimum-stability": "dev",
+    "license": [
+        "MIT"
+    ],
     "require": {
         "guzzlehttp/guzzle": "^6.5"
     },
