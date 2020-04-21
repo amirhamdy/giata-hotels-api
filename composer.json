@@ -1,0 +1,27 @@
+{
+    "name": "amirhamdy/giata-api",
+    "description": "this is a giata hotels api",
+    "authors": [
+        {
+            "name": "Amir Hamdy",
+            "email": "amirhamdy4@gmail.com"
+        }
+    ],
+    "version": "1.0.0",
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "GiataHotels\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GiataHotels\\GiataHotelsServiceProvider"
+            ]
+        }
+    }
+}
