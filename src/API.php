@@ -7,51 +7,47 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class API
 {
-    public function getHotels($country)
+    public static function getHotelsByCountry($country, $multi = false, $offset = false)
     {
-        $baseUrl = config('giata-api.multicodes.countryUrl');
-        $url = $baseUrl . $country;
-        return $this->sendRequest($url);
+        $baseUrl = $multi ? config('giata-api.multicodes.countryMultiUrl') : config('giata-api.multicodes.countryUrl');
+        $url = $baseUrl . ($offset ? $country . '/offset/' . $offset : $country);
+        return self::callGiataAPI($url);
     }
 
-    public function getHotel($giataId)
+    public static function getHotelByGiataId($giataId)
     {
         $baseUrl = config('giata-api.multicodes.giataIdUrl');
         $url = $baseUrl . $giataId;
-        return $this->sendRequest($url);
+        return self::callGiataAPI($url);
     }
 
-    public function getImages($giataId)
+    public static function getImagesByGiataId($giataId)
     {
         $baseUrl = config('giata-api.ghgml.imagesUrl');
         $url = $baseUrl . $giataId;
-        return $this->sendRequest($url);
+        return self::callGiataAPI($url);
     }
 
-    public function getTexts($giataId, $lang = 'ar')
+    public static function getTextsByGiataId($giataId, $lang = 'ar')
     {
         $baseUrl = config('giata-api.ghgml.textUrl');
         $url = $baseUrl . $lang . '/' . $giataId;
-        return $this->sendRequest($url);
+        return self::callGiataAPI($url);
     }
 
-    private function sendRequest($url)
+    protected static function callGiataAPI($url)
     {
         $client = new Client([
             'auth' => [config('giata-api.username'), config('giata-api.password')],
             'timeout' => config('giata-api.timeout', 120),
+            'headers' => ['Content-Type' => 'text/xml',]
         ]);
         try {
-            $res = $client->post($url);
-            return response()->json([
-                'code' => $res->getStatusCode(),
-                'message' => $res->getReasonPhrase(),
-                'data' => $res->getBody()->getContents()
-            ]);
+            $response = $client->post($url);
+            $body = $response->getBody()->getContents();
+            return xmlToArray::convert($body);
         } catch (GuzzleException $e) {
-            return response()->json([
-                'error' => $e->getMessage()
-            ], 500);
+            return ['status' => 500, 'error' => $e->getMessage()];
         }
     }
 }
