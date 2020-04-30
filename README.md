@@ -52,10 +52,10 @@ $response = GiataAPI::getHotelsByCountry('EG', true);
 
 ## Usage
 This package gives you the following methods to use:
-* [Get All Hotels By Country Code](#GiataAPI::getHotelsByCountry())
-* [Get a Hotel By Giata ID](#GiataAPI::getHotelByGiataId())
-* [Get Hotel's Images By Giata ID](#GiataAPI::getImagesByGiataId())
-* [Get Hotel's Translations By Giata ID](#GiataAPI::getTextsByGiataId())
+* [Get_All_Hotels_By_Country_Code](#GiataAPI::getHotelsByCountry())
+* [Get_A_Hotel_By_Giata_ID](#GiataAPI::getHotelByGiataId())
+* [Get_Hotel's_Images_By_Giata_ID](#GiataAPI::getImagesByGiataId())
+* [Get_Hotel's_Translations_By_Giata_ID](#GiataAPI::getTextsByGiataId())
 
 #### GiataAPI::getHotelsByCountry()
 Getting all hotels in a country, you can just use the `getHotelsByCountry()` method.
