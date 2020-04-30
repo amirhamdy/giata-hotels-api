@@ -5,37 +5,37 @@ namespace GiataHotels;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
-class API
+class GiataAPI
 {
-    public static function getHotelsByCountry($country, $multi = false, $offset = false)
+    public function getHotelsByCountry($country, $multi = false, $offset = false)
     {
         $baseUrl = $multi ? config('giata-api.multicodes.countryMultiUrl') : config('giata-api.multicodes.countryUrl');
         $url = $baseUrl . ($offset ? $country . '/offset/' . $offset : $country);
         return self::callGiataAPI($url);
     }
 
-    public static function getHotelByGiataId($giataId)
+    public function getHotelByGiataId($giataId)
     {
         $baseUrl = config('giata-api.multicodes.giataIdUrl');
         $url = $baseUrl . $giataId;
         return self::callGiataAPI($url);
     }
 
-    public static function getImagesByGiataId($giataId)
+    public function getImagesByGiataId($giataId)
     {
         $baseUrl = config('giata-api.ghgml.imagesUrl');
         $url = $baseUrl . $giataId;
         return self::callGiataAPI($url);
     }
 
-    public static function getTextsByGiataId($giataId, $lang = 'ar')
+    public function getTextsByGiataId($giataId, $lang = 'ar')
     {
         $baseUrl = config('giata-api.ghgml.textUrl');
         $url = $baseUrl . $lang . '/' . $giataId;
         return self::callGiataAPI($url);
     }
 
-    protected static function callGiataAPI($url)
+    protected function callGiataAPI($url)
     {
         $client = new Client([
             'auth' => [config('giata-api.username'), config('giata-api.password')],

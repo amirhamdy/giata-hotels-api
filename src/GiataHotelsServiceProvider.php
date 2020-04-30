@@ -14,8 +14,8 @@ class GiataHotelsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton(API::class, function () {
-            return new API();
+        $this->app->bind('GiataAPI', function () {
+            return new \GiataHotels\GiataAPI();
         });
     }
 }
