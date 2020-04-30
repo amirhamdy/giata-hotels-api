@@ -20,11 +20,17 @@
             "GiataHotels\\": "src/"
         }
     },
+    "suggest": {
+        "amirhamdy/giata-hotels-commands": "A package for calling Giata Hotels commands."
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "GiataHotels\\GiataHotelsServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "GiataAPI": "GiataHotels\\GiataHotelsFacade"
+            }
         }
     }
 }
