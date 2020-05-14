@@ -8,6 +8,7 @@ return [
     'ghgml' => [
         'imagesUrl' => 'http://ghgml.giatamedia.com/webservice/rest/1.0/images/',
         'textUrl' => 'http://ghgml.giatamedia.com/webservice/rest/1.0/texts/',
+        'providerUrl' => 'http://ghgml.giatamedia.com/webservice/rest/1.0/mappings/',
     ],
     'multicodes' => [
         'countryUrl' => 'https://multicodes.giatamedia.com/webservice/rest/1.latest/properties/country/',

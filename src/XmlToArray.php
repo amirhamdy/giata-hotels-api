@@ -245,4 +245,23 @@ class XmlToArray
         $newImages['images'] = $urls;
         return $newImages;
     }
+
+    public static function reformatProviderIds($hotel)
+    {
+        foreach ($hotel as $key => $value) {
+            if (is_array($value))
+                switch ($key) {
+                    case 'code':
+                        $codes = [];
+                        foreach ($value as $code) {
+                            $codes[] = isset($code['value']) ? $code['value'] : $code;
+                        }
+                        $hotel['code'] = $codes;
+                        break;
+                    default:
+                        break;
+                }
+        }
+        return $hotel;
+    }
 }
