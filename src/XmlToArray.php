@@ -95,6 +95,22 @@ class XmlToArray
                         break;
                     case 'alternativeNames':
                         $hotel[$key] = $hotel[$key]['alternativeName'];
+                        $names = [];
+                        if (!isset($hotel[$key]['alternativeNameType'])) {
+                            foreach ($hotel[$key] as $name) {
+                                $name['type'] = $name['alternativeNameType'];
+                                $name['name'] = $name['value'];
+                                unset($name['alternativeNameType']);
+                                unset($name['value']);
+                                $names[] = $name;
+                            }
+                            $hotel[$key] = $names;
+                        } else {
+                            $hotel[$key]['type'] = $hotel[$key]['alternativeNameType'];
+                            $hotel[$key]['name'] = $hotel[$key]['value'];
+                            unset($hotel[$key]['alternativeNameType']);
+                            unset($hotel[$key]['value']);
+                        }
                         break;
                     case 'addresses':
                         try {
