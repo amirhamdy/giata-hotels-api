@@ -76,11 +76,6 @@ class XmlToArray
         foreach ($hotel as $key => $value) {
             if (is_array($value))
                 switch ($key) {
-                    case 'lastUpdate':
-                        $time = strtotime($value);
-                        $dateInLocal = date("Y-m-d H:i:s", $time);
-                        $hotel[$key] = $dateInLocal;
-                        break;
                     case 'ghgml':
                         $hotel[$key] = $value['href'];
                         break;
@@ -196,6 +191,14 @@ class XmlToArray
                         }
                         break;
                     default:
+                        break;
+                }
+            else
+                switch ($key) {
+                    case 'lastUpdate':
+                        $time = strtotime($value);
+                        $dateInLocal = date("Y-m-d H:i:s", $time);
+                        $hotel[$key] = $dateInLocal;
                         break;
                 }
         }
