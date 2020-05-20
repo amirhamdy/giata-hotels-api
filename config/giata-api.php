@@ -12,6 +12,7 @@ return [
     ],
     'multicodes' => [
         'countryUrl' => 'https://multicodes.giatamedia.com/webservice/rest/1.latest/properties/country/',
+        'providerUrl' => 'https://multicodes.giatamedia.com/webservice/rest/1.latest/properties/gds/',
         'countryMultiUrl' => 'https://multicodes.giatamedia.com/webservice/rest/1.latest/properties/multi/country/',
         'giataIdUrl' => 'https://multicodes.giatamedia.com/webservice/rest/1.latest/properties/',
     ],

@@ -14,6 +14,12 @@ class GiataAPI
         return self::callGiataAPI($url);
     }
 
+    public function getHotelsByProvider($provider)
+    {
+        $baseUrl = config('giata-api.multicodes.providerUrl');
+        return self::callGiataAPI($baseUrl);
+    }
+
     public function getHotelsProviderIDs($provider)
     {
         $baseUrl = config('giata-api.ghgml.providerUrl');
